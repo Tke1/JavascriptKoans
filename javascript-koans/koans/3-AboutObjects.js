@@ -96,10 +96,17 @@ describe("3. About Objects", function () {
   });
 
   it("should create your own prototype", function() {
-    function MyPrototype(argument) {
-      return FILL_ME_IN;
-    }
-    var myNewObject = new MyPrototype("initial value");
+    function myPrototype(argument) {
+      this.argument=argument; 
+    };
+    console.log (myPrototype);
+    myPrototype.prototype.prop2= function() {
+      return this.argument;
+    };
+    console.log(myPrototype.protoype);
+    
+    var myNewObject = new myPrototype("initial value");
+    
 
     expect(myNewObject.prop1).toEqual({simple: "object"});
     expect(myNewObject.prop2).toEqual("initial value");

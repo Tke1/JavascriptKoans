@@ -26,8 +26,8 @@ describe("5. About Higher Order Functions", function () {
 
     numbers.forEach(isEven);
 
-    expect(msg).toEqual(FILL_ME_IN);
-    expect(numbers).toEqual(FILL_ME_IN);
+    expect(msg).toEqual("falsetruefalse");
+    expect(numbers).toEqual([1,2,3]);
   });
 
   it("should use 'all' to test whether all items pass condition", function () {
@@ -36,8 +36,8 @@ describe("5. About Higher Order Functions", function () {
 
     var isEven = function(x) { return x % 2 === 0 };
 
-    expect(onlyEven.every(isEven)).toBe(FILL_ME_IN);
-    expect(mixedBag.every(isEven)).toBe(FILL_ME_IN);
+    expect(onlyEven.every(isEven)).toBe(true);
+    expect(mixedBag.every(isEven)).toBe(false);
   });
 
   it("should use 'any' to test if any items passes condition" , function () {
@@ -46,15 +46,15 @@ describe("5. About Higher Order Functions", function () {
 
     var isEven = function(x) { return x % 2 === 0 };
 
-    expect(onlyEven.some(isEven)).toBe(FILL_ME_IN);
-    expect(mixedBag.some(isEven)).toBe(FILL_ME_IN);
+    expect(onlyEven.some(isEven)).toBe(true);
+    expect(mixedBag.some(isEven)).toBe(true);
   });
 
   it("should write a function to filter out objects that match a criteria", function () {
     // return a filer people over 40
     var people = [{name: "bob", age: 41}, {name: "jane", age: 22},{name: "janet", age: 47},{name: "louis", age: 35}];
     var peopleOverFourty = people.filter(function (x) {
-      return FILL_ME_IN;
+          return x.age > 40;
     });
 
     expect(peopleOverFourty).toEqual([{name: "bob", age: 41}, {name: "janet", age: 47}]);
@@ -64,7 +64,7 @@ describe("5. About Higher Order Functions", function () {
     // return a list of everyone's age
     var people = [{name: "bob", age: 41}, {name: "jane", age: 22},{name: "janet", age: 47},{name: "louis", age: 35}];
     var names = people.map(function(x) {
-      return FILL_ME_IN;
+      return x.age;
     });
 
     expect(names).toEqual([41, 22, 47, 35]);
@@ -96,13 +96,15 @@ describe("5. About Higher Order Functions", function () {
     // First split the string into a list of words
     // Map over each word
     // turn the array back into a string
-
+    // https://medium.freecodecamp.org/three-ways-to-title-case-a-sentence-in-javascript-676a9175eb27
     var jadenCase = function(string){
-      return FILL_ME_IN;
-    };
+      string= string.toLowerCase().split(' ').map(function(word) {
+            return (word.charAt(0).toUpperCase()+ word.slice(1));
+    });
 
     expect(jadenCase("How can mirrors be real if our eyes aren't real")).toEqual("How Can Mirrors Be Real If Our Eyes Aren't Real");
-  });
+  };
+});
 
   it("can write your own filter function using a for loop", function() {
     var myFilter = function(arr, func){
@@ -132,8 +134,13 @@ describe("5. About Higher Order Functions", function () {
 
   it("can write your own map function using forEach", function() {
     var myMap = function(arr, func){
+      var arr =[]; 
       arr.forEach(function(arrayItem) {
-        return FILL_ME_IN;
+        if (func(arrayItem)) {
+          return newArray.push(arrayItem);
+        }
+
+        
       });
     };
 
